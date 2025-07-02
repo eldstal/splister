@@ -7,16 +7,18 @@ import argparse
 # Returns filename,count
 def file_params(conf, index):
 
+    if conf.input == "-":
+        infile_base = "splister"
+    else:
+        infile_base = os.path.basename(conf.input)
+        infile_base = os.path.splitext(infile_base)[0]
+
     prefix = conf.output
     if not prefix:
-        prefix = os.path.basename(conf.input)
-        prefix = os.path.splitext(prefix)[0]
-
-    if prefix == "-":
-        prefix = "splister"
+        prefix = infile_base
 
     if prefix.endswith(os.path.sep):
-        prefix += "splister"
+        prefix += infile_base
 
     count = conf.start * conf.base**index
     filename = f"{prefix}-{index:>03}-{count}.txt"
