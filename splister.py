@@ -10,6 +10,7 @@ def file_params(conf, index):
     prefix = conf.output
     if not prefix:
         prefix = os.path.basename(conf.input)
+        prefix = os.path.splitext(prefix)[0]
 
     if prefix == "-":
         prefix = "splister"
@@ -57,7 +58,7 @@ def main():
             out_filename, current_threshold = file_params(conf, current_index)
             print(out_filename)
 
-            outdir = os.path.dirname(out_filename)
+            outdir = os.path.dirname(os.path.realpath(out_filename))
             os.makedirs(outdir, exist_ok=True)
             outfile = open(out_filename, "w+")
 
