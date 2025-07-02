@@ -1,0 +1,9 @@
+[project]
+name = "splister"
+version = "0.1"
+dependencies = [
+]
+
+[project.scripts]
+splister = "splister:main"
+
